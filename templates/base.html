@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}Movie Database{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/custom.css') }}"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Movie Database</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Add Movie
+          </button>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Container for content -->
+
+    <div class="container mt-4">{% block content %} {% endblock %}</div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add New Movie
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/add" method="POST">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  name="title"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="year"
+                  name="year"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="director" class="form-label">Director</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="director"
+                  name="director"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="image_url" class="form-label">Image URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="image_url"
+                  name="image_url"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="genre"
+                  name="genre"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="10"
+                  class="form-control"
+                  id="rating"
+                  name="rating"
+                  required
+                />
+              </div>
+              <div class="modal-footer p-0 pt-3 border-top-0">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Add Movie</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
